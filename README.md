@@ -7,12 +7,19 @@
 ✅Este projeto utiliza o Activepieces para criar um fluxo de automação sem código (no-code) que conecta o Telegram à API do Google Gemini.O bot recebe mensagens de usuários, as processa com a inteligência artificial do Gemini e envia a resposta de volta ao chat.
 
 🛠️ Pré-requisitos
+
 Para importar e ativar este fluxo, você precisará dos seguintes itens:
 1-Conta Activepieces: Para hospedar e gerenciar a automação.
+
+
 2-Token do Bot Telegram: O token HTTP exclusivo fornecido pelo BotFather no Telegram (ex: 123456:ABC-DEF1234...).
+
+
 3-Chave da API do Google Gemini: Uma chave de acesso ativa para o modelo de IA.
 
 ⚙️ Lógica do Fluxo (Workflow)
+
+
 O fluxo de automação é uma sequência de três passos que estabelece um ciclo de chat entre o Telegram e o Google Gemini.
 
 Passo 1: New Message (Gatilho), que utiliza o componente Telegram Bot. Sua principal Função é a de iniciar a automação, sendo ativado a cada nova mensagem que o bot recebe. Este passo é Configurado com o Token do Bot para garantir a autenticação.
@@ -24,13 +31,19 @@ Passo 3: Send Text Message, que utiliza o componente Telegram Bot. A Função é
 
 
 🚀 Como Usar e Configurar
+
+
 Siga estes passos para colocar o bot em funcionamento:
+
 1.Importação do Fluxo
+
 1.1 Baixe o arquivo de fluxo (o JSON ou .piece modificado) deste repositório.
+
 1.2 Acesse o Activepieces e utilize a opção Import Flow (Importar Fluxo).
 
 2.Configuração das Credenciais
 O fluxo importado contém placeholders (marcadores) no lugar dos dados confidenciais para garantir a segurança. Você deve configurar suas próprias credenciais:
+
 Passo 1 – New Message:
 É necessário o Token do Bot do Telegram. Crie uma nova conexão usando o token que você obteve no BotFather.
 
@@ -46,12 +59,19 @@ Após configurar as conexões, clique em Publicar (Publish Flow ou Activate) par
 
 
 ⚠️ Solução de Problemas Comuns
-1. Conflito de Webhook
+
+1.Conflito de Webhook
+   
 Problema: Conflict: can't use getUpdates method while webhook is active...
+
 Causa: O bot tem um Webhook antigo ativo.
+
 Solução: Delete o webhook acessando no navegador: https://api.telegram.org/bot[SEU_TOKEN]/deleteWebhook
 
-2. Erro de Formatação
+2.Erro de Formatação
+   
 Problema: Bad Request: can't parse entities: Character '.' is reserved...
+
 Causa: O Telegram não está conseguindo interpretar corretamente o formato do texto.
+
 Solução: No passo 3 – Send Text Message, certifique-se de que o campo Format está definido como HTML (ou a opção que funcionou) para garantir que o Telegram interprete o texto corretamente.
