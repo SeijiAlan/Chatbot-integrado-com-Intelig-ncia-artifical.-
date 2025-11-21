@@ -1,0 +1,136 @@
+﻿{
+  "created": "1763674448204",
+  "updated": "1763674448205",
+  "name": "Untitled",
+  "description": "",
+  "tags": [],
+  "pieces": [
+    "@activepieces/piece-telegram-bot",
+    "@activepieces/piece-google-gemini"
+  ],
+  "template": {
+    "displayName": "Untitled",
+    "trigger": {
+      "name": "trigger",
+      "valid": true,
+      "displayName": "New message",
+      "type": "PIECE_TRIGGER",
+      "settings": {
+        "propertySettings": {
+          "auth": {
+            "type": "MANUAL"
+          }
+        },
+        "pieceName": "@activepieces/piece-telegram-bot",
+        "pieceVersion": "0.3.21",
+        "input": {
+          "auth": "{{connections['lOoXomurJBf30N5dlULtJ']}}"
+        },
+        "sampleData": {},
+        "triggerName": "new_telegram_message"
+      },
+      "nextAction": {
+        "name": "step_1",
+        "skip": false,
+        "type": "PIECE",
+        "valid": true,
+        "settings": {
+          "input": {
+            "auth": "{{connections['u6jDIRkdLx8c8r8cbFKRQ']}}",
+            "model": "gemini-2.5-flash",
+            "prompt": "Seja gentil e educado, responda o que o usuário perguntar. Tente sugerir sempre assuntos ou outras opções {{trigger['message']}}",
+            "memoryKey": "memory"
+          },
+          "pieceName": "@activepieces/piece-google-gemini",
+          "actionName": "chat_gemini",
+          "sampleData": {},
+          "pieceVersion": "0.0.23",
+          "propertySettings": {
+            "auth": {
+              "type": "MANUAL"
+            },
+            "model": {
+              "type": "MANUAL"
+            },
+            "prompt": {
+              "type": "MANUAL"
+            },
+            "memoryKey": {
+              "type": "MANUAL"
+            }
+          },
+          "errorHandlingOptions": {
+            "retryOnFailure": {
+              "value": false
+            },
+            "continueOnFailure": {
+              "value": false
+            }
+          }
+        },
+        "nextAction": {
+          "name": "step_2",
+          "skip": false,
+          "type": "PIECE",
+          "valid": true,
+          "settings": {
+            "input": {
+              "auth": "{{connections['lOoXomurJBf30N5dlULtJ']}}",
+              "format": "HTML",
+              "chat_id": "8546246220",
+              "message": "{{step_1['response']}}",
+              "reply_markup": {},
+              "web_page_preview": true
+            },
+            "pieceName": "@activepieces/piece-telegram-bot",
+            "actionName": "send_text_message",
+            "sampleData": {},
+            "pieceVersion": "0.3.21",
+            "propertySettings": {
+              "auth": {
+                "type": "MANUAL"
+              },
+              "format": {
+                "type": "MANUAL"
+              },
+              "chat_id": {
+                "type": "MANUAL"
+              },
+              "message": {
+                "type": "MANUAL"
+              },
+              "instructions": {
+                "type": "MANUAL"
+              },
+              "reply_markup": {
+                "type": "MANUAL"
+              },
+              "web_page_preview": {
+                "type": "MANUAL"
+              },
+              "message_thread_id": {
+                "type": "MANUAL"
+              },
+              "instructions_format": {
+                "type": "MANUAL"
+              }
+            },
+            "errorHandlingOptions": {
+              "retryOnFailure": {
+                "value": false
+              },
+              "continueOnFailure": {
+                "value": false
+              }
+            }
+          },
+          "displayName": "Send Text Message"
+        },
+        "displayName": "Chat Gemini"
+      }
+    },
+    "valid": true,
+    "schemaVersion": "8"
+  },
+  "blogUrl": ""
+}
